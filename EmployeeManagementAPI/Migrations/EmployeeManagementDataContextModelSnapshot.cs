@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EmployeeManagementAPI.Data
+namespace EmployeeManagementAPI.Migrations
 {
     [DbContext(typeof(EmployeeManagementDataContext))]
     partial class EmployeeManagementDataContextModelSnapshot : ModelSnapshot
@@ -56,8 +56,10 @@ namespace EmployeeManagementAPI.Data
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
 
                     b.Property<string>("EmployeeNum")
                         .IsRequired()

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using EmployeeManagementAPI.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace EmployeeManagementAPI.Data
 {
@@ -15,6 +16,8 @@ namespace EmployeeManagementAPI.Data
         {
             modelBuilder.Entity<Person>().ToTable("Person");
             modelBuilder.Entity<Employee>().ToTable("Employee");
+            modelBuilder.Entity<Employee>().Property(u => u.EmployeeId).Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+
         }
 
     }

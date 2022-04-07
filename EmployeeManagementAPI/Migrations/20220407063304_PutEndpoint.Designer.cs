@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EmployeeManagementAPI.Data
+namespace EmployeeManagementAPI.Migrations
 {
     [DbContext(typeof(EmployeeManagementDataContext))]
-    [Migration("20220406024807_Inheritance")]
-    partial class Inheritance
+    [Migration("20220407063304_PutEndpoint")]
+    partial class PutEndpoint
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,8 +58,10 @@ namespace EmployeeManagementAPI.Data
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
 
                     b.Property<string>("EmployeeNum")
                         .IsRequired()

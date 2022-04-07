@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace EmployeeManagementAPI.Data
+namespace EmployeeManagementAPI.Migrations
 {
     [DbContext(typeof(EmployeeManagementDataContext))]
-    [Migration("20220406020029_InitialCreate")]
+    [Migration("20220407054506_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,11 +33,8 @@ namespace EmployeeManagementAPI.Data
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
+                        .HasMaxLength(128)
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -51,9 +48,7 @@ namespace EmployeeManagementAPI.Data
 
                     b.HasKey("PersonId");
 
-                    b.ToTable("People");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+                    b.ToTable("Person", (string)null);
                 });
 
             modelBuilder.Entity("EmployeeManagementAPI.Models.Employee", b =>
@@ -64,8 +59,10 @@ namespace EmployeeManagementAPI.Data
                         .HasColumnType("datetime2");
 
                     b.Property<int>("EmployeeId")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EmployeeId"), 1L, 1);
 
                     b.Property<string>("EmployeeNum")
                         .IsRequired()
@@ -75,7 +72,16 @@ namespace EmployeeManagementAPI.Data
                     b.Property<DateTime?>("TerminatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.ToTable("Employee", (string)null);
+                });
+
+            modelBuilder.Entity("EmployeeManagementAPI.Models.Employee", b =>
+                {
+                    b.HasOne("EmployeeManagementAPI.Models.Person", null)
+                        .WithOne()
+                        .HasForeignKey("EmployeeManagementAPI.Models.Employee", "PersonId")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

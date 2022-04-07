@@ -19,9 +19,9 @@ namespace EmployeeManagementAPI.Models
         [StringLength(128)] 
         [Display(Name = "Last Name")]
         public string LasttName { get; set; }
-        [Required]
-        [StringLength(128)] 
-        [Display(Name = "Birth Date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Birth Date")]        
         public DateTime BirthDate { get; set; }
     }
 }

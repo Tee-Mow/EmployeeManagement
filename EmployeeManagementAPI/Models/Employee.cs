@@ -9,7 +9,7 @@ namespace EmployeeManagementAPI.Models
 {
     public class Employee : Person
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmployeeId { get; set; }
         [Required]
         [StringLength(128)] 
