@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeManagementAPI.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialRecreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,8 +16,8 @@ namespace EmployeeManagementAPI.Migrations
                     PersonId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    LasttName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", maxLength: 128, nullable: false)
+                    LastName = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

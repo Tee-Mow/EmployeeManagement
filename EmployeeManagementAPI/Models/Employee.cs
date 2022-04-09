@@ -12,10 +12,10 @@ namespace EmployeeManagementAPI.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int EmployeeId { get; set; }
         [Required]
-        [StringLength(128)] 
+        [StringLength(128)]
         [Display(Name = "Employee Number")]
-        public string EmployeeNum  { get; set; }
-         
+        public string EmployeeNum { get; set; }
+
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

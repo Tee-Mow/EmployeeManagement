@@ -1,11 +1,11 @@
-<h2>Employee Management</h2>
+<!-- <h2>Employee Management</h2>
 
 <div>
   <label for="new-employee">Employee name: </label>
-  <input id="new-employee" #employeeName />
+  <input id="new-employee" #employeeName /> -->
 
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button type="button" class="add-button" (click)="add(' ');" >
+<!-- (click) passes input value to add() and then clears the input -->
+<!-- <button type="button" class="add-button" (click)="add(' ');">
     Add employee
   </button>
 </div>
@@ -15,7 +15,50 @@
     <a routerLink="/detail/{{employee.employeeId}}">
       <span class="badge">{{employee.employeeId}}</span> {{employee.firstName}}
     </a>
-    <button type="button" class="delete" title="delete employee"
-      (click)="delete(employee)">x</button>
+    <button type="button" class="delete" title="delete employee" (click)="delete(employee)">x</button>
   </li>
-</ul>
+</ul> -->
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-primary me-md-2" type="button" (click)="openModal()">Add
+          Employee</button>
+      </div>
+    </div>
+    <div class="card-body">
+      <table class="table table-striped table-hover align-middle mb-0 bg-white rounded">
+        <thead class="bg-light">
+          <tr>
+            <th>Name</th>
+            <th>Employee No</th>
+            <th>Employed Date</th>
+            <th>Terminated Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{employee.firstName+ ' ' +employee.lastName}}</td>
+            <td>{{employee.employeeNum}}</td>
+            <td>{{employee.employedDate | date}}</td>
+            <td>{{employee.terminatedDate | date}}</td>
+            <td>
+              <div class="d-grid gap-2 d-sm-block">
+                <button routerLink="/detail/{{employee.employeeId}}" type="button"
+                  class="btn btn-link btn-sm btn-rounded">
+                  <i class="far fa-edit"></i>
+                </button>
+                <button routerLink="/detail/{{employee.employeeId}}" type="button"
+                  class="btn btn-link btn-sm btn-rounded">
+                  <i class="far fa-trash-alt"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagementAPI.Migrations
 {
     [DbContext(typeof(EmployeeManagementDataContext))]
-    [Migration("20220407054506_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220409050818_UpdatesToDataStructure")]
+    partial class UpdatesToDataStructure
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,6 @@ namespace EmployeeManagementAPI.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonId"), 1L, 1);
 
                     b.Property<DateTime>("BirthDate")
-                        .HasMaxLength(128)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -41,7 +40,7 @@ namespace EmployeeManagementAPI.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("LasttName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");

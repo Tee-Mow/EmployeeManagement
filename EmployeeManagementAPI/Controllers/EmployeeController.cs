@@ -22,8 +22,8 @@ namespace EmployeeManagementAPI.Controllers
             _context = context;
         }
 
-        
-          // GET: api/TodoItems
+
+        // GET: api/TodoItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Employee>>> GetEmployees()
         {
@@ -37,7 +37,7 @@ namespace EmployeeManagementAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<Employee>> GetEmployee(int id)
         {
-            var employee = await _context.Employees.FindAsync(id);
+            var employee = await _context.Employees.Where(x => x.EmployeeId.Equals(id)).FirstOrDefaultAsync();
 
             if (employee == null)
             {
@@ -89,7 +89,7 @@ namespace EmployeeManagementAPI.Controllers
             return NoContent();
         }
 
-                // DELETE: api/TodoItems/5
+        // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {

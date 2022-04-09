@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagementAPI.Migrations
 {
     [DbContext(typeof(EmployeeManagementDataContext))]
-    [Migration("20220407063304_PutEndpoint")]
-    partial class PutEndpoint
+    [Migration("20220409050149_InitialRecreate")]
+    partial class InitialRecreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace EmployeeManagementAPI.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("LasttName")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");

@@ -4,7 +4,7 @@
 
 namespace EmployeeManagementAPI.Migrations
 {
-    public partial class PutEndpoint : Migration
+    public partial class UpdatesToDataStructure : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

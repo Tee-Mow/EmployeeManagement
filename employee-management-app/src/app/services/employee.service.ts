@@ -6,12 +6,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Employee } from '../models/employee';
 import { MessageService } from '../services/message.service';
-
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class EmployeeService {
 
-  private employeesUrl = 'api/employees';  // URL to web api
+  private employeesUrl = environment.apiUrl + 'api/employee';  // URL to web api
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -61,8 +61,8 @@ export class EmployeeService {
     }
     return this.http.get<Employee[]>(`${this.employeesUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
-         this.log(`found employees matching "${term}"`) :
-         this.log(`no employees matching "${term}"`)),
+        this.log(`found employees matching "${term}"`) :
+        this.log(`no employees matching "${term}"`)),
       catchError(this.handleError<Employee[]>('searchEmployees', []))
     );
   }
@@ -89,7 +89,7 @@ export class EmployeeService {
 
   /** PUT: update the employee on the server */
   updateEmployee(employee: Employee): Observable<any> {
-    return this.http.put(this.employeesUrl, employee, this.httpOptions).pipe(
+    return this.http.put(`${this.employeesUrl}/${employee.employeeId}`, employee, this.httpOptions).pipe(
       tap(_ => this.log(`updated employee id=${employee.employeeId}`)),
       catchError(this.handleError<any>('updateEmployee'))
     );

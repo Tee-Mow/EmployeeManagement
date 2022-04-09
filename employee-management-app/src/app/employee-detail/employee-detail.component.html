@@ -1,10 +1,47 @@
 <div *ngIf="employee">
-    <h2>{{employee.firstName | uppercase}} Details</h2>
-    <div><span>id: </span>{{employee.employeeId}}</div>
-    <div>
-      <label for="employee-firstName">First Name: </label>
-      <input id="employee-firstName" [(ngModel)]="employee.firstName" placeholder="Employee First name"/>
+  <div class="container-sm">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">First Name</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" id="employee-firstName" [(ngModel)]="employee.firstName"
+        placeholder="Employee First name" />
     </div>
-    <button type="button" (click)="goBack()">go back</button>
-    <button type="button" (click)="save()">save</button>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Last Name</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" id="employee-lastName" [(ngModel)]="employee.lastName"
+        placeholder="Employee Last name" />
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Birth Date</span>
+      <input type="date" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" id="employee-lastName"
+        [ngModel]="employee.birthDate | date:'yyyy-MM-dd'" placeholder="Employee Last name"
+        (ngModelChange)="employee.birthDate = $event">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Employee No</span>
+      <input type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" id="employee-num" [(ngModel)]="employee.employeeNum"
+        placeholder="Employee No" />
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Employed Date</span>
+      <input type="date" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" id="employee-lastName"
+        [ngModel]="employee.employedDate | date:'yyyy-MM-dd'" (ngModelChange)="employee.employedDate = $event"
+        placeholder="Employee Last name">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Terminated Date</span>
+      <input type="date" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" id="employee-lastName"
+        [ngModel]="employee.terminatedDate | date:'yyyy-MM-dd'" (ngModelChange)="employee.terminatedDate = $event"
+        placeholder="Employee Last name">
+    </div>
+    <div class="d-grid gap-2 d-md-block">
+      <button class="btn btn-secondary" type="button" (click)="goBack()">Back</button>
+      <button class="btn btn-primary" type="button" (click)="save()">Save</button>
+    </div>
+  </div>
 </div>
